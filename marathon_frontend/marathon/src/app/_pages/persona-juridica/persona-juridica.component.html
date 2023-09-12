@@ -1,0 +1,189 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+
+        <button class="btn btn-success" (click)="logout()">cerrar sesión</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+
+<div class="container-fluid">
+
+
+<mat-toolbar>Persona jurídica </mat-toolbar>
+
+
+<form [formGroup]="PersonaJur">
+  <div class="row">
+    <div class="col">
+      <mat-form-field>
+        <mat-label>RUC</mat-label>
+        <div style="display: flex;">
+        <input matInput formControlName="ruc">
+        <button mat-icon-button matSuffix (click)="buscarPersonaJuridica()">
+          <i class="fas fa-search iconos"></i>    
+        </button>
+
+        </div>
+      </mat-form-field>
+    </div>
+
+
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Ruc</mat-label>
+        <input matInput formControlName="ruc" [readonly]="true">
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Razon Social</mat-label>
+        <input matInput formControlName="razon_social" [readonly]="true">
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Estado</mat-label>
+        <input matInput formControlName="estado" [readonly]="true">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="direccion" [readonly]="true">
+      </mat-form-field>
+    </div>
+
+    <div class="col">
+        <mat-form-field>
+          <mat-label>ubigeo</mat-label>
+          <input matInput formControlName="ubigeo" [readonly]="true">
+        </mat-form-field>
+      </div>
+
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Departamento</mat-label>
+          <input matInput formControlName="departamento" [readonly]="true">
+        </mat-form-field>
+      </div>
+      
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Provincia</mat-label>
+          <input matInput formControlName="provincia" [readonly]="true">
+        </mat-form-field>
+      </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col">
+        <mat-form-field>
+          <mat-label>distrito</mat-label>
+          <input matInput formControlName="distrito" [readonly]="true">
+        </mat-form-field>
+      </div>
+
+  </div>
+
+
+  <button mat-raised-button color="primary" class="mb-3 mt-5" (click)="registrarPersonaJur()">Registrar</button>
+
+
+  <div class="container-fluid">
+    <div class="example-container mat-elevation-z8">
+
+      <mat-table [dataSource]="dataSourcePersonaJur" matSort>
+        <!-- Definición de la columna ID -->
+        <ng-container matColumnDef="orden">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>N°</mat-header-cell>
+          <mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="ruc">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>ruc</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.ruc}}</mat-cell>
+        </ng-container>
+
+
+        <!-- Definición de la columna Apellido1 -->
+        <ng-container matColumnDef="razon_social">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Razon Social</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.razon_social}}</mat-cell>
+        </ng-container>
+
+        <!-- Definición de la columna Apellido2 -->
+        <ng-container matColumnDef="estado">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.estado}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="direccion">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Dirección</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.direccion}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="departamento">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Departamento
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.departamento}}
+          </mat-cell>
+        </ng-container>
+
+
+
+        <!-- Definición de la fila -->
+        <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columnas;"></mat-row>
+      </mat-table>
+
+      <mat-paginator [length]="dataSourcePersonaJur.data.length" [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+
+    </div>
+
+  </div>
+
+</form>
+</div>
